@@ -100,7 +100,7 @@ class App extends Component {
     this.setState({ modal: !this.state.modal });
   };
 
-  handleSubmit = (item) => {
+handleSubmit = (item) => {
     this.toggle();
 
     if (item.id) {
@@ -109,16 +109,24 @@ class App extends Component {
         .put(`/api/todos/${item.id}/`, item)
         .then((res) => {
           this.recordAction({ type: "update", before: previousItem, after: res.data });
-          this.refreshList();
+          this.setState((prevState) => ({
+            todoList: prevState.todoList.map((todo) =>
+              todo.id === res.data.id ? res.data : todo
+            ),
+          }));
         })
         .catch((error) => console.error("Could not update todo", error));
       return;
     }
+
     axios
       .post("/api/todos/", item)
       .then((res) => {
         this.recordAction({ type: "create", before: null, after: res.data });
-        this.refreshList();
+        this.setState((prevState) => ({
+          todoList: [...prevState.todoList, res.data],
+          viewCompleted: false,
+        }));
       })
       .catch((error) => console.error("Could not create todo", error));
   };
