@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nishanth1205-web.github.io/To-do-Project",
+  "homepage": "https://nishanth1205-web.github.io/To-Do_frontend",
   "proxy": "http://localhost:8000",
   "dependencies": {
     "@testing-library/dom": "^10.4.2",
