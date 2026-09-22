@@ -5,9 +5,44 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #282c34;
+}
+
+.todo-title {
+  cursor: pointer;
+}
+
+.completed-todo {
+  text-decoration: line-through;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.undo-redo-btn {
+  font-size: 0.9rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.undo-redo-btn:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.undo-redo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.nav-tabs .nav-link {
+  cursor: pointer;
+  font-weight: 500;
 }
