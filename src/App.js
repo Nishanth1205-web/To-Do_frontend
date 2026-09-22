@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:8000";
+// Configure axios to use the API URL from the environment variable
+// Use the backend URL for API calls
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000"; 
+axios.defaults.baseURL = API_URL;
 
 class App extends Component {
   constructor(props) {
@@ -159,9 +162,8 @@ class App extends Component {
               type: "UPDATE",
               previousItem: item,
               updatedItem: res.data,
-              description: `Mark "${item.title}" as ${
-                updated.completed ? "completed" : "incomplete"
-              }`,
+              description: `Mark "${item.title}" as ${updated.completed ? "completed" : "incomplete"
+                }`,
             },
           ],
           redoStack: [],
@@ -359,9 +361,8 @@ class App extends Component {
             style={{ cursor: "pointer", width: "18px", height: "18px" }}
           />
           <span
-            className={`todo-title ${
-              item.completed ? "completed-todo text-muted" : ""
-            }`}
+            className={`todo-title ${item.completed ? "completed-todo text-muted" : ""
+              }`}
             title={item.description}
             onClick={() => this.handleToggleComplete(item)}
           >
